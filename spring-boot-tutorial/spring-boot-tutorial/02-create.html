@@ -1,0 +1,391 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <title>Spring Boot & Kubernetes :: Spring Boot &amp; Kubernetes</title>
+    <link rel="canonical" href="https://github.com/redhat-scholars/spring-boot-k8s-tutorial/spring-boot-tutorial/02-create.html">
+    <link rel="prev" href="01-setup.html">
+    <link rel="next" href="03-kubernetes.html">
+    <meta name="generator" content="Antora 2.3.4">
+    <link rel="stylesheet" href="../assets/css/site.css">
+  </head>
+  <body class="article">
+<header class="header">
+  <nav class="navbar">
+    <div class="navbar-brand">
+      <a class="navbar-item" href="https://developers.redhat.com" target="_blank"><img src="../_/img/RHDLogo.svg" height="40px" alt="Red Hat Developer Program"></a>
+      <a class="navbar-item" style="font-size: 24px; color: white" href="https://github.com/redhat-scholars/spring-boot-k8s-tutorial">Spring Boot &amp; Kubernetes</a>
+      <button class="navbar-burger" data-target="topbar-nav">
+        <span></span>
+        <span></span>
+        <span></span>
+      </button>
+    </div>
+    <div id="topbar-nav" class="navbar-menu">
+      <div class="navbar-end">
+        <a class="navbar-item" href="https://developers.redhat.com/ebooks/" target="_blank">Books</a>
+        <a class="navbar-item" href="https://developers.redhat.com/cheatsheets/" target="_blank">Cheat Sheets</a>
+        <a class="navbar-item" href="https://developers.redhat.com/events/" target="_blank">Upcoming Events</a>
+        <div class="navbar-item has-dropdown is-hoverable">
+          <a class="navbar-link" href="#">More Tutorials</a>
+          <div class="navbar-dropdown">
+            <a class="navbar-item" href="https://redhat-developer-demos.github.io/kubernetes-tutorial/" target="_blank">Kubernetes</a>
+            <a class="navbar-item" href="https://redhat-developer-demos.github.io/istio-tutorial/" target="_blank">Istio</a>
+            <a class="navbar-item" href="https://redhat-developer-demos.github.io/quarkus-tutorial/" target="_blank">Quarkus</a>
+            <a class="navbar-item" href="https://redhat-developer-demos.github.io/knative-tutorial/" target="_blank">Knative</a>
+            <a class="navbar-item" href="https://redhat-developer-demos.github.io/tekton-tutorial/" target="_blank">Tekton</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </nav>
+</header>
+<div class="body">
+<div class="nav-container" data-component="spring-boot-tutorial" data-version="master">
+  <aside class="nav">
+    <div class="panels">
+<div class="nav-panel-menu is-active" data-panel="menu">
+  <nav class="nav-menu">
+    <h3 class="title"><a href="index.html"></a></h3>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="0">
+<ul class="nav-list">
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="01-setup.html">1. Setup</a>
+  </li>
+  <li class="nav-item is-current-page" data-depth="1">
+    <button class="nav-item-toggle"></button>
+    <a class="nav-link" href="02-create.html">2. Create Application</a>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="#startspringboot">Skaffold Spring Boot App.</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="#buildrun">Build &amp; Run</a>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <button class="nav-item-toggle"></button>
+    <a class="nav-link" href="03-kubernetes.html">3. Kubernetize Application</a>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="2">
+    <button class="nav-item-toggle"></button>
+    <a class="nav-link" href="03-kubernetes.html#jkube">JKube</a>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="03-kubernetes.html#create">Create Container</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="03-kubernetes.html#deploy">Deploy Container</a>
+  </li>
+</ul>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <button class="nav-item-toggle"></button>
+    <a class="nav-link" href="04-actuators.html">4. Spring Boot Actuator</a>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="04-actuators.html#heatlhcheck">Health Check Actuator</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="04-actuators.html#metrics">Metrics</a>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <button class="nav-item-toggle"></button>
+    <a class="nav-link" href="05-resiliency.html">5. Resiliency</a>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="05-resiliency.html#restclient">Rest Client</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <button class="nav-item-toggle"></button>
+    <a class="nav-link" href="05-resiliency.html#resiliency">Resiliency</a>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="05-resiliency.html#timeout">Timeout</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="05-resiliency.html#fallback">Fallback</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="05-resiliency.html#circuitbreaker">Circuit Breaker</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="05-resiliency.html#retry">Retry</a>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="05-resiliency.html#cleanup">Clean up</a>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <button class="nav-item-toggle"></button>
+    <a class="nav-link" href="06-configuration.html">6. Configuration</a>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="2">
+    <button class="nav-item-toggle"></button>
+    <a class="nav-link" href="06-configuration.html#sckconfig">Spring Cloud Kubernetes Config</a>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="06-configuration.html#registering">Adding Dependency</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="06-configuration.html#code">Developing Code</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="06-configuration.html#configuration">Configuring the Application</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="06-configuration.html#deploying">Deploying the Application</a>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="06-configuration.html#cleanup">Clean up</a>
+  </li>
+</ul>
+  </li>
+</ul>
+  </li>
+</ul>
+  </nav>
+</div>
+    </div>
+  </aside>
+</div>
+<main class="article">
+<div class="toolbar" role="navigation">
+<button class="nav-toggle"></button>
+  <a href="index.html" class="home-link"></a>
+<nav class="breadcrumbs" aria-label="breadcrumbs">
+  <ul>
+    <li><a href="index.html">Spring Boot & Kubernetes</a></li>
+    <li><a href="02-create.html">2. Create Application</a></li>
+  </ul>
+</nav>
+  <div class="edit-this-page"><a href="file:///Users/redhat/Documents/projects/spring-boot-k8s-tutorial/documentation/modules/ROOT/pages/02-create.adoc">Edit this Page</a></div>
+</div>
+  <div class="content">
+<article class="doc">
+<h1 class="page">Spring Boot & Kubernetes</h1>
+<div class="sect1">
+<h2 id="startspringboot"><a class="anchor" href="#startspringboot"></a>Skaffold a Spring Boot</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>The first thing we need is a Spring Boot application.
+To skaffold it, we use the Spring Initilizr web page located at <a href="https://start.spring.io" target="_blank" rel="noopener">spting initilizr</a>.</p>
+</div>
+<div class="paragraph">
+<p>In the page, fill the form with the values shown in <a href="#start-spring">Spring Initializr</a>, keeping an eye to add Spring Web, Resilience4J and Spring Boot Actuator.</p>
+</div>
+<div id="start-spring" class="imageblock">
+<div class="content">
+<img src="images/start-spring.png" alt="start spring">
+</div>
+<div class="title">Figure 1. Spring Initializr</div>
+</div>
+<div class="paragraph">
+<p>Push the <code>Generate</code> button which will download the source code.</p>
+</div>
+<div class="admonitionblock tip">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-tip" title="Tip"></i>
+</td>
+<td class="content">
+Click on <a href="https://start.spring.io/#!type=maven-project&amp;language=java&amp;platformVersion=3.2.2&amp;packaging=jar&amp;jvmVersion=17&amp;groupId=org.acme&amp;artifactId=hellokubernetes&amp;name=hellokubernetes&amp;description=Demo%20project%20for%20Spring%20Boot&amp;packageName=org.acme.hellokubernetes&amp;dependencies=web,actuator,cloud-resilience4j" target="_blank" rel="noopener">Generate Spring-Boot app</a> to get all done for you.
+</td>
+</tr>
+</table>
+</div>
+<div class="literalblock">
+<div class="content">
+<pre>Downloaded and Unzip the project:</pre>
+</div>
+</div>
+<div class="listingblock console-input">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">unzip hello-kubernetes.zip
+cd hello-kubernetes</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Because we are going to use OpenShift DevSpaces, You need to init a git repo in the local project folder and then commit it to a git repo.</p>
+</div>
+<div class="admonitionblock important">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-important" title="Important"></i>
+</td>
+<td class="content">
+in case you can&#8217;t have your own git repository, A public repository is already created with the project boilerplate code
+</td>
+</tr>
+</table>
+</div>
+<div class="listingblock console-output">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash"><a href="https://github.com/wael2000/hellokubernetes" class="bare" target="_blank" rel="noopener">https://github.com/wael2000/hellokubernetes</a></code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>use the following in case you want to create your own git repo</p>
+</div>
+<div class="listingblock console-input">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">git init
+git add .
+git commit -m "first commit"
+git branch -M main
+git remote add origin $REPO_URL
+git push -u origin main</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Once you have the repo (one of the above options), Then click on Below URL to access DevSpaces.</p>
+</div>
+<div class="listingblock console-output">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash"><a href="https://devspaces.%DOMAIN%/dashboard/" target="_blank" rel="noopener">DevSpaces Dashboard</a></code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Login with OpenShift</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="images/create-01.png" alt="create 01">
+</div>
+</div>
+<div class="paragraph">
+<p>use following credentials.</p>
+</div>
+<div class="listingblock console-output">
+<div class="content">
+<pre class="highlightjs highlight"><code>USERNAME: %USERNAME%
+PASSWORD: %PASSWORD%</code></pre>
+</div>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="images/create-02.png" alt="create 02">
+</div>
+</div>
+<div class="paragraph">
+<p>First time you will need to Authorize Access, Click on "Allow Selected Permissions"</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="images/create-03.png" alt="create 03">
+</div>
+</div>
+<div class="paragraph">
+<p>Create Workspace and provide the Git Repo URL *.</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="images/create-04.png" alt="create 04">
+</div>
+</div>
+<div class="paragraph">
+<p>Once created, you will get your IDE with the project preloaded, Go ahead and open a new terminal.</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="images/create-05.png" alt="create 05">
+</div>
+</div>
+<div class="paragraph">
+<p>Use this terminal to execute all commands required through out this workshop.</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="images/create-06.png" alt="create 06">
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_lets_start_coding"><a class="anchor" href="#_lets_start_coding"></a>Let&#8217;s start coding</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>In your IDE, create a new class named <code>HelloController</code> in <code>org.acme.hellokubernetes</code> package:</p>
+</div>
+<div class="listingblock console-input">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-java hljs" data-lang="java">package org.acme.hellokubernetes;
+
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RestController;
+
+@RestController
+public class HelloController {
+
+    @GetMapping("/hello")
+    String hello() {
+      return "Hello World";
+    }
+
+}</code></pre>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="buildrun"><a class="anchor" href="#buildrun"></a>Build and Run</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>We can build the project and run it:</p>
+</div>
+<div class="listingblock console-input">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">./mvnw package -DskipTests
+
+java -jar target/hellokubernetes-0.0.1-SNAPSHOT.jar</code></pre>
+</div>
+</div>
+<div class="listingblock console-input">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">curl localhost:8080/hello</code></pre>
+</div>
+</div>
+<div class="listingblock console-output">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">Hello World</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>So far, nothing new, we&#8217;ve skafolded a simple Spring Boot Rest API.
+In the following section, we&#8217;ll start looking at how to "Kubernetize" a Spring Boot application.</p>
+</div>
+</div>
+</div>
+<nav class="pagination">
+  <span class="prev"><a href="01-setup.html">1. Setup</a></span>
+  <span class="next"><a href="03-kubernetes.html">3. Kubernetize Application</a></span>
+</nav>
+</article>
+<aside class="toc sidebar" data-title="Contents" data-levels="2">
+  <div class="toc-menu"></div>
+</aside>
+  </div>
+</main>
+</div>
+<footer class="footer">
+  <a class="rhd-logo" href="https://developers.redhat.com" target="_blank"></div>
+</footer>
+<script src="../assets/js/vendor/clipboard.js"></script>
+<script src="../assets/js/site.js"></script>
+<script async src="../assets/js/vendor/highlight.js"></script>
+  </body>
+</html>
