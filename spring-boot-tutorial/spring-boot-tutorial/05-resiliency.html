@@ -685,7 +685,7 @@ public class HellokubernetesApplication {
 <div class="listingblock console-input">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">for i in {1..10}; do
-curl BASE_URL/hello
+curl localhost:8080/hello
 done</code></pre>
 </div>
 </div>
@@ -727,8 +727,43 @@ exception io.github.resilience4j.circuitbreaker.CallNotPermittedException: Circu
 </div>
 
 <div class="paragraph">
-<p>To make the <code>RestTemplate</code> fail, let&#8217;s stop the external service by stopping the <code>port-forward</code> process.
-Move to the terminal where <code>kubectl port-forward</code> was run and push <span class="keyseq"><kbd>Ctrl</kbd>+<kbd>C</kbd></span> to stop it.</p>
+<p>To make the <code>RestTemplate</code> fail, let&#8217;s stop the external service by scaling down the pods number to zero.
+Go to the Web Console, Open Developer view, scale down the external service pods to zero</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="images/resiliency-01.png" alt="resiliency 01">
+</div>
+</div>
+
+
+<div class="paragraph">
+<p>Run the following command again in a terminal:</p>
+</div>
+<div class="listingblock console-input">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">for i in {1..10}; do
+curl localhost:8080/hello
+done</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>The output is 10 errors:</p>
+</div>
+<div class="listingblock console-output">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">{"timestamp":"2024-02-28T22:00:16.723+00:00","status":500,"error":"Internal Server Error","path":"/hello"}{"timestamp":"2024-02-28T22:00:16.751+00:00","status":500,"error":"Internal Server Error","path":"/hello"}{"timestamp":"2024-02-28T22:00:16.771+00:00","status":500,"error":"Internal Server Error","path":"/hello"}{"timestamp":"2024-02-28T22:00:16.789+00:00","status":500,"error":"Internal Server Error","path":"/hello"}{"timestamp":"2024-02-28T22:00:16.807+00:00","status":500,"error":"Internal Server Error","path":"/hello"}{"timestamp":"2024-02-28T22:00:16.824+00:00","status":500,"error":"Internal Server Error","path":"/hello"}{"timestamp":"2024-02-28T22:00:16.849+00:00","status":500,"error":"Internal Server Error","path":"/hello"}{"timestamp":"2024-02-28T22:00:16.866+00:00","status":500,"error":"Internal Server Error","path":"/hello"}{"timestamp":"2024-02-28T22:00:16.881+00:00","status":500,"error":"Internal Server Error","path":"/hello"}{"timestamp":"2024-02-28T22:00:16.899+00:00","status":500,"error":"Internal Server Error","path":"/hello"}
+</code></pre>
+</div>
+</div>	
+
+<div class="paragraph">
+<p>Bring the the external service up again by scaling it up to one pod.</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="images/resiliency-02.png" alt="resiliency 02">
+</div>
 </div>	
 	
 </div>
