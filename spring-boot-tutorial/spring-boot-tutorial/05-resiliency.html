@@ -653,6 +653,22 @@ import io.github.resilience4j.timelimiter.TimeLimiterConfig;
 public class HellokubernetesApplication {
 
 	@Bean
+	public Customizer<Resilience4JCircuitBreakerFactory> defaultCustomizer() {
+	    return factory -> factory.configureDefault(id -> new Resilience4JConfigBuilder(id)
+			.timeLimiterConfig(TimeLimiterConfig.custom().timeoutDuration(Duration.ofSeconds(4)).build())
+	            	.circuitBreakerConfig(CircuitBreakerConfig.custom() 
+				    	.failureRateThreshold(50) 
+					.slowCallRateThreshold(100) // Slow call rate threshold
+					.slowCallDurationThreshold(Duration.ofMillis(2000)) // Duration to consider a call as slow, e.g., 1 second
+					.waitDurationInOpenState(Duration.ofSeconds(10)) // Time to wait in open state before attempting to half-open, e.g., 10 seconds
+					.permittedNumberOfCallsInHalfOpenState(5) // Number of permitted calls in half-open state
+					.minimumNumberOfCalls(3) // Minimum number of calls before considering the Circuit Breaker for state transition
+					.slidingWindowSize(10) // Number of function calls the Circuit Breaker uses to calculate metrics
+	                                .build())
+	            .build());
+	}
+	
+	@Bean
 	public Customizer&lt;Resilience4JCircuitBreakerFactory&gt; defaultCustomizer() {
     return factory -&gt; factory.configureDefault(id -&gt; new Resilience4JConfigBuilder(id)
             .circuitBreakerConfig(CircuitBreakerConfig.custom() <i class="conum" data-value="1"></i><b>(1)</b>
