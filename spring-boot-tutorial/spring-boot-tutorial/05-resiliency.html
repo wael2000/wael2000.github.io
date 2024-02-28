@@ -668,39 +668,12 @@ public class HellokubernetesApplication {
 	            .build());
 	}
 	
-	@Bean
-	public Customizer&lt;Resilience4JCircuitBreakerFactory&gt; defaultCustomizer() {
-    return factory -&gt; factory.configureDefault(id -&gt; new Resilience4JConfigBuilder(id)
-            .circuitBreakerConfig(CircuitBreakerConfig.custom() <i class="conum" data-value="1"></i><b>(1)</b>
-                                    .failureRateThreshold(50) <i class="conum" data-value="2"></i><b>(2)</b>
-                                    .slidingWindow(5, 5, CircuitBreakerConfig.SlidingWindowType.COUNT_BASED) <i class="conum" data-value="3"></i><b>(3)</b>
-                                    .build()
-                                )
-            .build());
-	}
-
 	public static void main(String[] args) {
 		SpringApplication.run(HellokubernetesApplication.class, args);
 	}
 
 }</code></pre>
 </div>
-</div>
-<div class="colist arabic">
-<table>
-<tr>
-<td><i class="conum" data-value="1"></i><b>1</b></td>
-<td>Configures Circuit breaker.</td>
-</tr>
-<tr>
-<td><i class="conum" data-value="2"></i><b>2</b></td>
-<td>Rate threshold to 50% of calls.</td>
-</tr>
-<tr>
-<td><i class="conum" data-value="3"></i><b>3</b></td>
-<td>Configures the size of the sliding window.</td>
-</tr>
-</table>
 </div>
 <div class="paragraph">
 <p>Let&#8217;s run the Spring Boot application:</p>
