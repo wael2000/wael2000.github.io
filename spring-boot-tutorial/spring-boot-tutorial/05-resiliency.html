@@ -283,7 +283,7 @@ EOF</code></pre>
 <div class="listingblock console-output">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">NAME                    HOST/PORT                                                          PATH   SERVICES          PORT   TERMINATION   WILDCARD
-externalroute           externalroute-demo.apps.cluster-nbdqm.dynamic.redhatworkshops.io          externalservice   http                 None</code></pre>
+externalroute           externalroute-user1-demo.%DOMAIN%          externalservice   http                 None</code></pre>
 </div>
 </div>
 <div class="admonitionblock important">
@@ -324,7 +324,7 @@ public class MessageService {
         System.out.println("Get Message Remote call");
 
         final RestTemplate messageServiceGateway = new RestTemplate();
-        return messageServiceGateway.getForEntity("http://externalroute-demo.apps.cluster-nbdqm.dynamic.redhatworkshops.io", String.class).getBody();
+        return messageServiceGateway.getForEntity("http://externalroute-user1-demo.%DOMAIN%", String.class).getBody();
     }
 
 }</code></pre>
