@@ -694,11 +694,16 @@ done</code></pre>
 </div>
 </div>
 <div class="paragraph">
-<p>The output is obviously 10 errors:</p>
+<p>The output is 3 responses followed by 7 errors:</p>
 </div>
 <div class="listingblock console-output">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">{"timestamp":"2021-06-01T08:48:59.417+00:00","status":500,"error":"Internal Server Error","message":"","path":"/hello"}{"timestamp":"2021-06-01T08:48:59.435+00:00","status":500,"error":"Internal Server Error","message":"","path":"/hello"}{"timestamp":"2021-06-01T08:48:59.448+00:00","status":500,"error":"Internal Server Error","message":"","path":"/hello"}{"timestamp":"2021-06-01T08:48:59.468+00:00","status":500,"error":"Internal Server Error","message":"","path":"/hello"}{"timestamp":"2021-06-01T08:48:59.479+00:00","status":500,"error":"Internal Server Error","message":"","path":"/hello"}{"timestamp":"2021-06-01T08:48:59.491+00:00","status":500,"error":"Internal Server Error","message":"","path":"/hello"}{"timestamp":"2021-06-01T08:48:59.504+00:00","status":500,"error":"Internal Server Error","message":"","path":"/hello"}{"timestamp":"2021-06-01T08:48:59.515+00:00","status":500,"error":"Internal Server Error","message":"","path":"/hello"}{"timestamp":"2021-06-01T08:48:59.527+00:00","status":500,"error":"Internal Server Error","message":"","path":"/hello"}{"timestamp":"2021-06-01T08:48:59.539+00:00","status":500,"error":"Internal Server Error","message":"","path":"/hello"}</code></pre>
+<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">
+	This is Spring calling a recommendation v2 from 'externalservice-58c7d45c6-r4hnc': 1
+	This is Spring calling a recommendation v2 from 'externalservice-58c7d45c6-r4hnc': 2
+	This is Spring calling a recommendation v2 from 'externalservice-58c7d45c6-r4hnc': 3
+	{"timestamp":"2024-02-28T21:44:02.406+00:00","status":500,"error":"Internal Server Error","path":"/hello"}{"timestamp":"2024-02-28T21:44:02.454+00:00","status":500,"error":"Internal Server Error","path":"/hello"}{"timestamp":"2024-02-28T21:44:02.479+00:00","status":500,"error":"Internal Server Error","path":"/hello"}{"timestamp":"2024-02-28T21:44:02.493+00:00","status":500,"error":"Internal Server Error","path":"/hello"}{"timestamp":"2024-02-28T21:44:02.509+00:00","status":500,"error":"Internal Server Error","path":"/hello"}{"timestamp":"2024-02-28T21:44:02.524+00:00","status":500,"error":"Internal Server Error","path":"/hello"}{"timestamp":"2024-02-28T21:44:02.539+00:00","status":500,"error":"Internal Server Error","path":"/hello"}
+</code></pre>
 </div>
 </div>
 <div class="paragraph">
