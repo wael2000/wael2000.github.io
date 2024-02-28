@@ -626,10 +626,6 @@ String hello() {
 <p>We can also use <a href="http://martinfowler.com/bliki/CircuitBreaker.html">Circuit Breaker pattern</a> in resiliency4j as a resiliency strategy.</p>
 </div>
 <div class="paragraph">
-<p>To make the <code>RestTemplate</code> fail, let&#8217;s stop the external service by stopping the <code>port-forward</code> process.
-Move to the terminal where <code>kubectl port-forward</code> was run and push <span class="keyseq"><kbd>Ctrl</kbd>+<kbd>C</kbd></span> to stop it.</p>
-</div>
-<div class="paragraph">
 <p>Open <code>HellokubernetesApplication.java</code> file and configure circuit breaker:</p>
 </div>
 <div class="listingblock console-input">
@@ -698,7 +694,7 @@ done</code></pre>
 </div>
 <div class="listingblock console-output">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash"> This is Spring calling a recommendation v2 from 'externalservice-58c7d45c6-r4hnc': 1 
+<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">This is Spring calling a recommendation v2 from 'externalservice-58c7d45c6-r4hnc': 1 
 This is Spring calling a recommendation v2 from 'externalservice-58c7d45c6-r4hnc': 2
 This is Spring calling a recommendation v2 from 'externalservice-58c7d45c6-r4hnc': 3
 {"timestamp":"2024-02-28T21:44:02.406+00:00","status":500,"error":"Internal Server Error","path":"/hello"}{"timestamp":"2024-02-28T21:44:02.454+00:00","status":500,"error":"Internal Server Error","path":"/hello"}{"timestamp":"2024-02-28T21:44:02.479+00:00","status":500,"error":"Internal Server Error","path":"/hello"}{"timestamp":"2024-02-28T21:44:02.493+00:00","status":500,"error":"Internal Server Error","path":"/hello"}{"timestamp":"2024-02-28T21:44:02.509+00:00","status":500,"error":"Internal Server Error","path":"/hello"}{"timestamp":"2024-02-28T21:44:02.524+00:00","status":500,"error":"Internal Server Error","path":"/hello"}{"timestamp":"2024-02-28T21:44:02.539+00:00","status":500,"error":"Internal Server Error","path":"/hello"}
@@ -729,6 +725,12 @@ exception io.github.resilience4j.circuitbreaker.CallNotPermittedException: Circu
 </tr>
 </table>
 </div>
+
+<div class="paragraph">
+<p>To make the <code>RestTemplate</code> fail, let&#8217;s stop the external service by stopping the <code>port-forward</code> process.
+Move to the terminal where <code>kubectl port-forward</code> was run and push <span class="keyseq"><kbd>Ctrl</kbd>+<kbd>C</kbd></span> to stop it.</p>
+</div>	
+	
 </div>
 <div class="sect2">
 <h3 id="retry"><a class="anchor" href="#retry"></a>Retry</h3>
