@@ -532,13 +532,13 @@ to build a new example application in Ruby. Or use kubectl to deploy a simple Ku
 </div>
 <div class="listingblock console-input">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">kubectl get ns</code></pre>
+<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">oc get project</code></pre>
 </div>
 </div>
 <div class="listingblock console-output">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-yml hljs" data-lang="yml">NAME                                               STATUS   AGE
-user1-demo                                         Active   101s</code></pre>
+<pre class="highlightjs highlight"><code class="language-yml hljs" data-lang="yml">NAME                                               STATUS   
+user1-demo                                         Active</code></pre>
 </div>
 </div>
 </div>
@@ -550,7 +550,7 @@ We can deploy application using <code>kubectl</code> CLI tool:</p>
 </div>
 <div class="listingblock console-input">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">kubectl apply -f target/classes/META-INF/jkube/kubernetes.yml</code></pre>
+<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">kubectl apply -f target/classes/META-INF/jkube/kubernetes.yml --validate=false</code></pre>
 </div>
 </div>
 <div class="paragraph">
