@@ -454,29 +454,14 @@ rules:
 hellokubernetes-96c8574d6-cnbsp   1/1     Running   0          18s</code></pre>
 </div>
 </div>
-<div class="paragraph">
-<p>Then port forward the service so it&#8217;s accessible from localhost.</p>
-</div>
-<div class="listingblock console-input">
-<div class="content">
-<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">kubectl port-forward -n default hellokubernetes-96c8574d6-cnbsp  8080:8080</code></pre>
-</div>
-</div>
-<div class="listingblock console-output">
-<div class="content">
-<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">serviceaccount/spring-boot created
-service/hellokubernetes created
-role.rbac.authorization.k8s.io/spring-boot-view created
-rolebinding.rbac.authorization.k8s.io/spring-boot-view created
-deployment.apps/hellokubernetes created</code></pre>
-</div>
-</div>
+
+
 <div class="paragraph">
 <p>Finally we can <code>curl</code> the service:</p>
 </div>
 <div class="listingblock console-input">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">curl localhost:8080/greeting/alex</code></pre>
+<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">curl hellokubernetes.%DOMAIN%/greeting/alex</code></pre>
 </div>
 </div>
 <div class="listingblock console-output">
