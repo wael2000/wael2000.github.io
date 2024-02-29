@@ -204,11 +204,25 @@ All of them, might fit your requirements but they just cover one part of the equ
 <i class="fa icon-important" title="Important"></i>
 </td>
 <td class="content">
-Substitute <code>quay.io</code> for your container registry and <code>sunix</code> with your username.
+Substitute <code>quay.io</code> for your container registry and <code>wael2000</code> with your username.
 </td>
 </tr>
 </table>
 </div>
+
+<div class="paragraph">
+<p>Open <code>pom.xml</code> file again and change your project version to your username %USERNAME% :</p>
+</div>
+<div class="listingblock console-input">
+<div class="title">pom.xml</div>
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-xml hljs" data-lang="xml"><groupId>org.acme</groupId>
+	<artifactId>hellokubernetes</artifactId>
+	<version>%USERNAME%</version>
+	<name>hellokubernetes</name></code></pre>
+</div>
+</div>	
+	
 <div class="paragraph">
 <p>Then add the <code>jkube</code> plugin at <code>plugins</code> section just after the <code>spring-boot-maven-plugin</code> plugin:</p>
 </div>
