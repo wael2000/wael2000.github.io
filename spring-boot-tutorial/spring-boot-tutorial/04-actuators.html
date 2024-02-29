@@ -227,7 +227,7 @@ Some of them are generic and others are specific to a technology. To mention a f
 </div>
 <div class="listingblock console-input">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">BASE_URL/actuator/health</code></pre>
+<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">curl localhost:8080/actuator/health</code></pre>
 </div>
 </div>
 <div class="listingblock console-output">
@@ -278,7 +278,7 @@ public class LuckyHealthIndicator implements HealthIndicator {
 </div>
 <div class="listingblock console-input">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">BASE_URL/actuator/health</code></pre>
+<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">curl localhost:8080/actuator/health</code></pre>
 </div>
 </div>
 <div class="listingblock console-output">
@@ -288,7 +288,7 @@ public class LuckyHealthIndicator implements HealthIndicator {
 </div>
 <div class="listingblock console-input">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">BASE_URL/actuator/health</code></pre>
+<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">curl localhost:8080/actuator/health</code></pre>
 </div>
 </div>
 <div class="listingblock console-output">
@@ -316,7 +316,7 @@ Open <code>src/main/resources/application.properties</code> file and add the fol
 </div>
 <div class="listingblock console-input">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">BASE_URL/actuator/health</code></pre>
+<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">curl localhost:8080/actuator/health</code></pre>
 </div>
 </div>
 <div class="paragraph">
@@ -333,7 +333,7 @@ For example, in the case of <code>LuckyHealthIndicator</code>, the name of the h
 </div>
 <div class="listingblock console-input">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">BASE_URL/actuator/health/lucky</code></pre>
+<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">curl localhost:8080/actuator/health/lucky</code></pre>
 </div>
 </div>
 <div class="listingblock console-output">
@@ -399,7 +399,7 @@ For this tutorial, we are going to use Prometheus as a metrics format.</p>
 </div>
 <div class="listingblock console-input">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">BASE_URL/actuator/metrics</code></pre>
+<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">curl localhost:8080/actuator/metrics</code></pre>
 </div>
 </div>
 <div class="paragraph">
@@ -415,7 +415,7 @@ For this tutorial, we are going to use Prometheus as a metrics format.</p>
 </div>
 <div class="listingblock console-input">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">BASE_URL/actuator/prometheus</code></pre>
+<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">curl localhost:8080/actuator/prometheus</code></pre>
 </div>
 </div>
 <div class="paragraph">
@@ -516,9 +516,9 @@ public class HelloController {
 </div>
 <div class="listingblock console-input">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">BASE_URL/hello/Alex
+<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">curl localhost:8080/hello/Alex
 
-BASE_URL/actuator/prometheus</code></pre>
+curl localhost:8080/actuator/prometheus</code></pre>
 </div>
 </div>
 <div class="paragraph">
