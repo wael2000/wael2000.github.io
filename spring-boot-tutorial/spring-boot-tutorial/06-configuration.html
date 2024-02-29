@@ -273,7 +273,7 @@ public String greeting(@PathVariable("name") String name) {
 <p>But since we are in Kubernetes, instead of set this property in <code>application.properties</code>, let&#8217;s set it in a <code>ConfigMap</code>:</p>
 </div>
 <div class="listingblock console-input">
-<div class="title">src/main/resources/k8s/hello-kube.cm.yaml</div>
+<div class="title">src/main/resources/k8s/hello-kube-cm.yaml</div>
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-yaml hljs" data-lang="yaml">apiVersion: v1
 kind: ConfigMap
