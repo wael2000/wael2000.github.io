@@ -278,7 +278,7 @@ public String greeting(@PathVariable("name") String name) {
 <pre class="highlightjs highlight"><code class="language-yaml hljs" data-lang="yaml">apiVersion: v1
 kind: ConfigMap
 metadata:
-  name: hello-kubernetes <i class="conum" data-value="1"></i><b>(1)</b>
+  name: hellokubernetes <i class="conum" data-value="1"></i><b>(1)</b>
 data: <i class="conum" data-value="2"></i><b>(2)</b>
   application.properties: |-
     greeting.message: Aloha</code></pre>
@@ -302,11 +302,11 @@ data: <i class="conum" data-value="2"></i><b>(2)</b>
 <div class="listingblock console-input">
 <div class="title">application.properties</div>
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-properties hljs" data-lang="properties">spring.application.name=hello-kubernetes <i class="conum" data-value="1"></i><b>(1)</b>
+<pre class="highlightjs highlight"><code class="language-properties hljs" data-lang="properties">spring.application.name=hellokubernetes <i class="conum" data-value="1"></i><b>(1)</b>
 
-spring.cloud.kubernetes.config.name=hello-kubernetes <i class="conum" data-value="2"></i><b>(2)</b>
+spring.cloud.kubernetes.config.name=hellokubernetes <i class="conum" data-value="2"></i><b>(2)</b>
 spring.cloud.kubernetes.config.namespace=default <i class="conum" data-value="3"></i><b>(3)</b>
-spring.cloud.kubernetes.config.sources[0].name=hello-kubernetes <i class="conum" data-value="4"></i><b>(4)</b>
+spring.cloud.kubernetes.config.sources[0].name=hellokubernetes <i class="conum" data-value="4"></i><b>(4)</b>
 spring.cloud.kubernetes.config.enabled=true</code></pre>
 </div>
 </div>
@@ -413,7 +413,7 @@ rules:
 </div>
 <div class="listingblock console-output">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">configmap/hello-kubernetes created</code></pre>
+<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">configmap/hellokubernetes created</code></pre>
 </div>
 </div>
 <div class="paragraph">
@@ -451,7 +451,7 @@ rules:
 <div class="listingblock console-output">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">NAME                    READY   STATUS    RESTARTS   AGE
-hello-kubernetes-96c8574d6-cnbsp   1/1     Running   0          18s</code></pre>
+hellokubernetes-96c8574d6-cnbsp   1/1     Running   0          18s</code></pre>
 </div>
 </div>
 <div class="paragraph">
@@ -459,16 +459,16 @@ hello-kubernetes-96c8574d6-cnbsp   1/1     Running   0          18s</code></pre>
 </div>
 <div class="listingblock console-input">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">kubectl port-forward -n default hello-kubernetes-96c8574d6-cnbsp  8080:8080</code></pre>
+<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">kubectl port-forward -n default hellokubernetes-96c8574d6-cnbsp  8080:8080</code></pre>
 </div>
 </div>
 <div class="listingblock console-output">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">serviceaccount/spring-boot created
-service/hello-kubernetes created
+service/hellokubernetes created
 role.rbac.authorization.k8s.io/spring-boot-view created
 rolebinding.rbac.authorization.k8s.io/spring-boot-view created
-deployment.apps/hello-kubernetes created</code></pre>
+deployment.apps/hellokubernetes created</code></pre>
 </div>
 </div>
 <div class="paragraph">
