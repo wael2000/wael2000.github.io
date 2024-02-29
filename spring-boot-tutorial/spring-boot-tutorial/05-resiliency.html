@@ -594,7 +594,7 @@ import io.github.resilience4j.timelimiter.TimeLimiterConfig;
 public class HellokubernetesApplication {
 
 	@Bean
-	public Customizer<Resilience4JCircuitBreakerFactory> defaultCustomizer() {
+	public Customizer$lt;Resilience4JCircuitBreakerFactory$gt; defaultCustomizer() {
 	    return factory -> factory.configureDefault(id -> new Resilience4JConfigBuilder(id)
 			.timeLimiterConfig(TimeLimiterConfig.custom().timeoutDuration(Duration.ofSeconds(4)).build())
 	            	.circuitBreakerConfig(CircuitBreakerConfig.custom() 
