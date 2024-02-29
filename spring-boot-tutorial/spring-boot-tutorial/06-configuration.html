@@ -408,7 +408,7 @@ rules:
 </div>
 <div class="listingblock console-input">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">kubectl apply -f src/main/resources/k8s/hello-kube-cm.yaml -n %USERNAME%-demo</code></pre>
+<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">kubectl apply -f src/main/resources/k8s/hello-kube-cm.yaml -n %USERNAME%-demo --validate=false</code></pre>
 </div>
 </div>
 <div class="listingblock console-output">
@@ -440,7 +440,7 @@ rules:
 </div>
 <div class="listingblock console-input">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">kubectl apply -f target/classes/META-INF/jkube/kubernetes.yml -n default</code></pre>
+<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">kubectl apply -f target/classes/META-INF/jkube/kubernetes.yml -n %USERNAME%-demo --validate=false</code></pre>
 </div>
 </div>
 <div class="listingblock console-input">
