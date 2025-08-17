@@ -1,0 +1,218 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <title>Spring Boot & Kubernetes :: Spring Boot &amp; Kubernetes</title>
+    <link rel="canonical" href="https://github.com/redhat-scholars/spring-boot-k8s-tutorial/vm-as-a-code/01-setup.html">
+    <link rel="prev" href="index.html">
+    <link rel="next" href="02-create.html">
+    <meta name="generator" content="Antora 2.3.4">
+    <link rel="stylesheet" href="../assets/css/site.css">
+  </head>
+  <body class="article">
+<header class="header">
+  <nav class="navbar">
+    <div class="navbar-brand">
+      <a class="navbar-item" href="https://developers.redhat.com" target="_blank"><img src="../assets/img/RHDLogo.svg" height="40px" alt="Red Hat Developer Program"></a>
+      <a class="navbar-item" style="font-size: 24px; color: white" href="https://github.com/redhat-scholars/spring-boot-k8s-tutorial">Spring Boot &amp; Kubernetes</a>
+      <button class="navbar-burger" data-target="topbar-nav">
+        <span></span>
+        <span></span>
+        <span></span>
+      </button>
+    </div>
+    <div id="topbar-nav" class="navbar-menu">
+      <div class="navbar-end">
+        <a class="navbar-item" href="https://developers.redhat.com/ebooks/" target="_blank">Books</a>
+        <a class="navbar-item" href="https://developers.redhat.com/cheatsheets/" target="_blank">Cheat Sheets</a>
+        <a class="navbar-item" href="https://developers.redhat.com/events/" target="_blank">Upcoming Events</a>
+        <div class="navbar-item has-dropdown is-hoverable">
+          <a class="navbar-link" href="#">More Tutorials</a>
+          <div class="navbar-dropdown">
+            <a class="navbar-item" href="https://redhat-developer-demos.github.io/kubernetes-tutorial/" target="_blank">Kubernetes</a>
+            <a class="navbar-item" href="https://redhat-developer-demos.github.io/istio-tutorial/" target="_blank">Istio</a>
+            <a class="navbar-item" href="https://redhat-developer-demos.github.io/quarkus-tutorial/" target="_blank">Quarkus</a>
+            <a class="navbar-item" href="https://redhat-developer-demos.github.io/knative-tutorial/" target="_blank">Knative</a>
+            <a class="navbar-item" href="https://redhat-developer-demos.github.io/tekton-tutorial/" target="_blank">Tekton</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </nav>
+</header>
+<div class="body">
+<div class="nav-container" data-component="vm-as-a-code" data-version="master">
+  <aside class="nav">
+    <div class="panels">
+<div class="nav-panel-menu is-active" data-panel="menu">
+  <nav class="nav-menu">
+    <h3 class="title"><a href="index.html"></a></h3>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="0">
+<ul class="nav-list">
+  <li class="nav-item is-current-page" data-depth="1">
+    <a class="nav-link" href="01-setup.html">1. Setup</a>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <button class="nav-item-toggle"></button>
+    <a class="nav-link" href="02-create.html">2. Create Application</a>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="02-create.html#startspringboot">Skaffold Spring Boot App.</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="02-create.html#buildrun">Build &amp; Run</a>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <button class="nav-item-toggle"></button>
+    <a class="nav-link" href="03-kubernetes.html">3. Kubernetize Application</a>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="2">
+    <button class="nav-item-toggle"></button>
+    <a class="nav-link" href="03-kubernetes.html#jkube">JKube</a>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="03-kubernetes.html#create">Create Container</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="03-kubernetes.html#deploy">Deploy Container</a>
+  </li>
+</ul>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <button class="nav-item-toggle"></button>
+    <a class="nav-link" href="04-actuators.html">4. Spring Boot Actuator</a>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="04-actuators.html#heatlhcheck">Health Check Actuator</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="04-actuators.html#metrics">Metrics</a>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <button class="nav-item-toggle"></button>
+    <a class="nav-link" href="05-resiliency.html">5. Resiliency</a>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="05-resiliency.html#restclient">Rest Client</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <button class="nav-item-toggle"></button>
+    <a class="nav-link" href="05-resiliency.html#resiliency">Resiliency</a>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="05-resiliency.html#timeout">Timeout</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="05-resiliency.html#fallback">Fallback</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="05-resiliency.html#circuitbreaker">Circuit Breaker</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="05-resiliency.html#retry">Retry</a>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="05-resiliency.html#cleanup">Clean up</a>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <button class="nav-item-toggle"></button>
+    <a class="nav-link" href="06-configuration.html">6. Configuration</a>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="2">
+    <button class="nav-item-toggle"></button>
+    <a class="nav-link" href="06-configuration.html#sckconfig">Spring Cloud Kubernetes Config</a>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="06-configuration.html#registering">Adding Dependency</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="06-configuration.html#code">Developing Code</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="06-configuration.html#configuration">Configuring the Application</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="06-configuration.html#deploying">Deploying the Application</a>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="06-configuration.html#cleanup">Clean up</a>
+  </li>
+</ul>
+  </li>
+</ul>
+  </li>
+</ul>
+  </nav>
+</div>
+    </div>
+  </aside>
+</div>
+<main class="article">
+<div class="toolbar" role="navigation">
+<button class="nav-toggle"></button>
+  <a href="index.html" class="home-link"></a>
+<nav class="breadcrumbs" aria-label="breadcrumbs">
+  <ul>
+    <li><a href="index.html">Spring Boot & Kubernetes</a></li>
+    <li><a href="01-setup.html">1. Setup</a></li>
+  </ul>
+</nav>
+  <div class="edit-this-page"><a href="file:///Users/redhat/Documents/projects/spring-boot-k8s-tutorial/documentation/modules/ROOT/pages/01-setup.adoc">Edit this Page</a></div>
+</div>
+  <div class="content">
+<article class="doc">
+<h1 class="page">Spring Boot & Kubernetes</h1>
+<div class="sect1">
+<h2 id="_prerequisite"><a class="anchor" href="#_prerequisite"></a>Prerequisite</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>Developers need not to install any local tools as following tools are provides as part of the workshop setup:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>OpenShift Web Console</p>
+</li>
+<li>
+<p>OpenShift Web terminal (web based OC CLI)</p>
+</li>
+<li>
+<p>OpenShift DevSpaces (web based IDE)</p>
+</li>
+</ul>
+</div>
+</div>
+</div>
+<nav class="pagination" data-panel="menu">
+  <span class="prev"><a class="nav-link" href="index.html">Spring Boot & Kubernetes</a></span>
+  <span class="next"><a class="nav-link" href="02-create.html">2. Create Application</a></span>
+</nav>
+</article>
+<aside class="toc sidebar" data-title="Contents" data-levels="2">
+  <div class="toc-menu"></div>
+</aside>
+  </div>
+</main>
+</div>
+<footer class="footer">
+  <a class="rhd-logo" href="https://developers.redhat.com" target="_blank"></div>
+</footer>
+<script src="../assets/js/vendor/clipboard.js"></script>
+<script src="../assets/js/site.js"></script>
+<script async src="../assets/js/vendor/highlight.js"></script>
+  </body>
+</html>
