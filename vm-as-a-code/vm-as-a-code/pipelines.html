@@ -83,11 +83,208 @@
 <article class="doc">
 <h1 class="page">vm as a service</h1>
 <div class="sect1">
-<h2 id="_prerequisite"><a class="anchor" href="#_prerequisite"></a>Prerequisite</h2>
+
+<h2 id="_pipeline"><a class="anchor" href="#_pipeline"></a>Pipeline</h2>
 <div class="sectionbody">
 <div class="paragraph">
 <p>Developers need not to install any local tools as following tools are provides as part of the workshop setup:</p>
 </div>
+
+
+<div class="literalblock">
+<div class="content">
+<pre>Downloaded and Unzip the project:</pre>
+</div>
+</div>
+<div class="listingblock console-input">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">
+  
+
+apiVersion: tekton.dev/v1
+kind: Pipeline
+metadata:
+  name: vm-as-a-service
+spec:
+  params:
+    - default: create
+      description: create or delete
+      name: action
+      type: string
+    - default: pss
+      name: tenant
+      type: string
+    - default: main
+      name: REVISION
+      type: string
+  tasks:
+    - name: git-clone
+      params:
+        - name: refspec
+          value: ''
+        - name: submodules
+          value: 'true'
+        - name: depth
+          value: '1'
+        - name: sslVerify
+          value: 'true'
+        - name: crtFileName
+          value: ca-bundle.crt
+        - name: subdirectory
+          value: ''
+        - name: sparseCheckoutDirectories
+          value: ''
+        - name: deleteExisting
+          value: 'true'
+        - name: httpProxy
+          value: ''
+        - name: httpsProxy
+          value: ''
+        - name: noProxy
+          value: ''
+        - name: verbose
+          value: 'true'
+        - name: gitInitImage
+          value: >-
+            registry.redhat.io/openshift-pipelines/pipelines-git-init-rhel8@sha256:868966ef9d4b54952d8a74eb83bba40eb1f52c0148994fa704efd0e3797c61c5
+        - name: userHome
+          value: /home/git
+        - name: URL
+          value: https://github.com/Caseraw/OpenShiftDemoTime
+        - name: REVISION
+          value: $(params.REVISION)
+      taskRef:
+        params:
+          - name: kind
+            value: task
+          - name: name
+            value: git-clone
+          - name: namespace
+            value: openshift-pipelines
+        resolver: cluster
+      workspaces:
+        - name: output
+          workspace: source
+    - name: provision-vms
+      params:
+        - name: SCRIPT
+          value: >-
+            sed -e 's/TENANT/$(params.tenant)/g' scenarios/uc02-vm-as-a-service/appset.yaml |
+            oc $(params.action) -f - -n openshift-gitops
+        - name: VERSION
+          value: latest
+      runAfter:
+        - git-clone
+      taskRef:
+        params:
+          - name: kind
+            value: task
+          - name: name
+            value: openshift-client
+          - name: namespace
+            value: openshift-pipelines
+        resolver: cluster
+      workspaces:
+        - name: manifest_dir
+          workspace: source
+  workspaces:
+    - name: source
+      optional: false
+  finally: []
+---
+apiVersion: triggers.tekton.dev/v1beta1
+kind: TriggerBinding
+metadata:
+  name: vm-as-a-service-trigger-binding
+spec:
+  params:
+    - name: action
+      value: $(body.action)
+    - name: tenant
+      value: $(body.tenant)
+---
+apiVersion: triggers.tekton.dev/v1alpha1
+kind: TriggerTemplate
+metadata:
+  name: vm-as-a-service-trigger-template
+spec:
+  params:
+    - name: action
+    - name: tenant
+  resourcetemplates:
+    - apiVersion: tekton.dev/v1beta1
+      kind: PipelineRun
+      metadata:
+        generateName: vm-as-a-service-pipeline-$(tt.params.tenant)-
+      spec:
+        params:
+          - name: action
+            value: $(tt.params.action)
+          - name: tenant
+            value: $(tt.params.tenant)
+        pipelineRef:
+          name: vm-as-a-service
+        serviceAccountName: pipeline
+        workspaces:
+          - name: source
+            volumeClaimTemplate:
+              spec:
+                accessModes:
+                  - ReadWriteOnce
+                resources:
+                  requests:
+                    storage: 64Mi
+                #storageClassName: ocs-external-storagecluster-ceph-rbd
+                storageClassName: gp3-csi
+                volumeMode: Filesystem
+---
+apiVersion: triggers.tekton.dev/v1alpha1
+kind: EventListener
+metadata:
+  name: vm-as-a-service-event-listener
+spec:
+  namespaceSelector: {}
+  resources: {}
+  serviceAccountName: pipeline
+  triggers:
+    - bindings:
+        - kind: TriggerBinding
+          ref: vm-as-a-service-trigger-binding
+      name: application-trigger
+      template:
+        ref: vm-as-a-service-trigger-template
+---
+kind: Route
+apiVersion: route.openshift.io/v1
+metadata:
+  name: el-vm-as-a-service-event-listener
+  labels:
+    app.kubernetes.io/managed-by: EventListener
+    app.kubernetes.io/part-of: Triggers
+    eventlistener: vm-as-a-service-event-listener
+  annotations:
+    openshift.io/host.generated: 'true'
+spec:
+  to:
+    kind: Service
+    name: el-vm-as-a-service-event-listener
+    weight: 100
+  port:
+    targetPort: http-listener
+  wildcardPolicy: None
+
+
+
+  
+
+  
+</code></pre>
+</div>
+</div>
+
+
+
+
 <div class="ulist">
 <ul>
 <li>
@@ -103,6 +300,7 @@
 </div>
 </div>
 </div>
+
 <nav class="pagination" data-panel="menu">
   <span class="prev"><a class="nav-link" href="index.html">vm as a service</a></span>
   <span class="next"><a class="nav-link" href="webconsole.html">2. web console</a></span>
