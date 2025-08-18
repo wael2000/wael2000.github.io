@@ -244,7 +244,58 @@ There are different ways to run the pipeline, for example, using the OpenShift W
         <img src="images/pipeline-05.png" alt="create 02">
       </div>
     </li>
-    
+    <li>
+      <p> run the pipeline with following parameters</p>
+      <div class="content">
+        <img src="images/pipeline-06.png" alt="create 02">
+      </div>
+    </li>
+    <li>
+      <p> change tenant value to <code>%USERNAME%-vms</code></p>
+      <div class="content">
+        <img src="images/pipeline-07.png" alt="create 02">
+      </div>
+    </li>
+    <li>
+      <p> Scroll down to "workspace" and select "Volume ClaimTemplate" option</p>
+      <div class="content">
+        <img src="images/pipeline-08.png" alt="create 02">
+      </div>
+    </li>
+    <li>
+      <p> Click "Start" button </p>
+      <div class="content">
+        <img src="images/pipeline-09.png" alt="create 02">
+      </div>
+    </li>
+    <li>
+      <p> wait for pipeline to finish</p>
+      <div class="content">
+        <img src="images/pipeline-10.png" alt="create 02">
+      </div>
+      <div class="content">
+        <img src="images/pipeline-11.png" alt="create 02">
+      </div>
+    </li>
+      
+
+
+apiVersion: rbac.authorization.k8s.io/v1
+kind: ClusterRoleBinding
+metadata:
+  name: open-cluster-management:cluster-manager-admin
+roleRef:
+  apiGroup: rbac.authorization.k8s.io
+  kind: ClusterRole
+  name: open-cluster-management:cluster-manager-admin
+subjects:
+- kind: ServiceAccount
+  name: pipeline
+  namespace: user1-demo
+
+    </li>
+
+
   </ul>
 </div>
 
