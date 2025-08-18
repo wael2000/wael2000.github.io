@@ -192,6 +192,47 @@ spec:
 </div>
 </div>
 
+<div class="listingblock console-input">
+<div class="content">
+There are different ways to run the pipeline, for example, using the OpenShift Web Console or the OpenShift CLI. The following command will run the pipeline using the OpenShift CLI:
+</div>
+<pre class="highlightjs highlight">
+  <code class="language-bash hljs" data-lang="bash">oc apply -f pipeline.yaml</code>
+</pre>
+
+<div class="content">
+  <p> to run crate the pipeline using the webconsole, follow the screens below:</p>
+  <ul>
+    <li>
+      <p>Open the OpenShift Web Console</p>
+        <a href="https://console-openshift-console.apps.ocp4.example.com" target="_blank">https://console-openshift-console.apps.ocp4.example.com</a>
+
+        <div class="content">
+          <img src="images/pipeline-01.png" alt="create 02">
+        </div>
+      <p> Login using following credentials:</p>
+      <pre class="highlightjs highlight"><code>USERNAME: %USERNAME%
+      PASSWORD: %PASSWORD%</code></pre>
+  
+    </li>
+    <li>
+      <p>Click on the "project" menu item in the left navigation panel under "Home"</p>
+      <p>create a new project called <code>%USERNAME%-demo</code></p>
+    </li>
+
+    <li>
+      <p>Click on the "Pipelines" menu item in the left navigation panel</p> 
+      <p>Click on "Create" then "Pipeline" and switch to "YAML view"</p>
+    </li>
+    <li>
+      <p>Copy the content of the above pipline and click "Create"</p> 
+    </li>
+    
+  </ul>
+</div>
+
+</div>
+</div>
 
 
 
